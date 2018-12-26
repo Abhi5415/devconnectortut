@@ -6,6 +6,7 @@ const users = require('./routes/api/users');
 const posts = require('./routes/api/posts');
 const profile = require('./routes/api/profile');
 
+const passport = require('passport');
 
 const app = express();
 
@@ -14,6 +15,9 @@ const db = require('./config/keys').mongoURI;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(passport.initialize());
+require('./config/passport')(passport);
 
 // connect to mongodb
 mongoose
